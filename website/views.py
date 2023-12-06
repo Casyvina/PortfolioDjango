@@ -5,12 +5,20 @@ import smtplib
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
-
-
+from .models import *
 
 # Create your views here.
-
 def home(request):
+    categories = ProjectCategory.objects.all()
+    projects = Project.objects.all()
+    print(projects)
+    context = {
+        'categories': categories,
+        'projects': projects,
+    }
+    return render(request, 'website/home.html', context)
+
+def contact(request):
     
     if request.method == "POST":
         
@@ -43,8 +51,6 @@ def home(request):
             print('Recipient address is invalid.')
         except smtplib.SMTPRecipientsRefused:
             print('Recipient addresses are invalid.')
-        except (smtplib.SMTPException, e):
-            print('An unexpected SMTP error occurred: {}'.format(e))
         else:
             print('Email sent successfully.') 
         return HttpResponseRedirect(f"{reverse('home')}#contact")

@@ -537,10 +537,16 @@
             <h1 class="mb-5"><span class="text-danger">My</span> Portfolio</h1>
             <div class="portfolio">
                 <div class="filters">
-                    <a href="#" data-filter=".new" class="active">
+                    <a href="#" data-filter=".New"class="active">
                         New
                     </a>
-                    <a href="#" data-filter=".advertising">
+
+                    {% for category in categories %}
+                    <a href="#" data-filter=".{{category}}">
+                        {{category}}
+                    </a>
+                    {% endfor %}
+                    <!-- <a href="#" data-filter=".advertising">
                         Advertising
                     </a>
                     <a href="#" data-filter=".branding">
@@ -549,22 +555,27 @@
                     <a href="#" data-filter=".web">
                         Web
                     </a>
+                    <a href="#" data-filter=".port">
+                        Port
+                    </a> -->
                 </div>
+
+                {% for project in projects %}
                 <div class="portfolio-container"> 
-                    <div class="col-md-6 col-lg-4 web new">
+                    <div class="col-md-6 col-lg-4 {{project.catergory}} new">
                         <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/web-1.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
+                            <img src="{{project.image}}" class="img-fluid" alt="">
                             <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/web-1.jpg' %}"></a>
+                                <a class="img-popup" href="{{project.image}}"></a>
                                 <div class="text-holder">
-                                    <h6 class="title">WEB</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                    <h6 class="title">{{project.title}}</h6>
+                                    <p class="subtitle">{{project.description}}</p>
                                 </div>
                             </div>   
                         </div>             
-                    </div>
-                    
-                    <div class="col-md-6 col-lg-4 web new">
+                    </div>            
+                {% endfor %}
+                    <!-- <div class="col-md-6 col-lg-4 web new">
                         <div class="portfolio-item">
                             <img src="{% static 'website/imgs/web-2.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
                             <div class="content-holder">
@@ -705,11 +716,13 @@
                                 <a class="img-popup" href="{% static 'website/imgs/branding-5.jpg' %}"></a>
                                 <div class="text-holder">
                                     <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                    <p class="subtitle">. Data acquisition and wrangling: Collecting and gathering data from various sources, such as databases, sensors, social media, and web scraping. Cleaning, transforming, and structuring the data into a format suitable for analysis.</p>
                                 </div>
                             </div>
                         </div>                                                   
-                    </div>
+                    </div> -->
+
+
                 </div> 
             </div>  
         </div>            
@@ -785,13 +798,13 @@
         </div>
     </section>
 
-    {% if messages %}
+    <!-- {% if messages %}
         <ul class="messages">
     {% for message in messages %}
         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
     {% endfor %}
         </ul>
-    {% endif %}
+    {% endif %} -->
 
 
     <!-- contact section -->
@@ -814,7 +827,7 @@
                 <div class="col-lg-8">
                     <div class="contact-form-card">
                         <h4 class="contact-title">Send a message</h4>
-                        <form action="{% url 'home' %}" method="POST">
+                        <form action="{% url 'contact' %}" method="POST">
                             {% csrf_token %}
                             <div class="form-group">
                                 <input  class="form-control" name="message-name" type="text" placeholder="Name *" required>
