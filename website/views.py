@@ -10,6 +10,7 @@ from .models import *
 # Create your views here.
 def home(request):
     categories = ProjectCategory.objects.all()
+    print(categories)
     projects = Project.objects.all()
     print(projects)
     context = {

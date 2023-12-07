@@ -527,7 +527,7 @@
     <section class="section bg-dark py-5">
         <div class="container text-center">
             <h2 class="text-light mb-5 font-weight-normal">I Am Available For FreeLance</h2>
-            <button class="btn bg-success w-lg" >Hire me</button>
+            <button class="btn bg-success w-lg" ><a href="#contact" class="nav-link mr-auto" style="text-decoration: none; color:inherit">Hire me</a></button>
         </div>
     </section>
 
@@ -542,8 +542,8 @@
                     </a>
 
                     {% for category in categories %}
-                    <a href="#" data-filter=".{{category}}">
-                        {{category}}
+                    <a href="#" data-filter=".{{category.id}}">
+                        {{category.name}}
                     </a>
                     {% endfor %}
                     <!-- <a href="#" data-filter=".advertising">
@@ -560,7 +560,7 @@
                     </a> -->
                 </div>
 
-                {% for project in projects %}
+                <!-- {% for project in projects %}
                 <div class="portfolio-container"> 
                     <div class="col-md-6 col-lg-4 {{project.catergory}} new">
                         <div class="portfolio-item">
@@ -574,6 +574,23 @@
                             </div>   
                         </div>             
                     </div>            
+                {% endfor %} -->
+
+                {% for project in projects %}
+                <div class="portfolio-container">
+                    <div class="col-md-6 col-lg-4 {{ project.category.id }}">
+                    <div class="portfolio-item">
+                        <img src="{{ project.image.url }}" class="img-fluid" alt="">
+                        <div class="content-holder">
+                        <a class="img-popup" href="{{ project.image.url }}"></a>
+                        <div class="text-holder">
+                            <a href="{{project.url}}" style="margin-top: 40px ;"><h6 class="ti-link icon-md title">{{ project.title }}</h6></a>
+                            <p class="subtitle">{{ project.description }}</p>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
                 {% endfor %}
                     <!-- <div class="col-md-6 col-lg-4 web new">
                         <div class="portfolio-item">
