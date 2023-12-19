@@ -36,5 +36,6 @@ class BlogModel(models.Model):
     class Meta:
         ordering = ['-updated', '-created']
      
-    def ___str__(self):
+    def __str__(self):
          return self.title
+     

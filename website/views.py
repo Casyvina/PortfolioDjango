@@ -6,18 +6,27 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib import messages
 from .models import *
+from django.core.paginator import Paginator, Page
+from django.core.serializers import json
+from django.http import HttpResponse
 
 # Create your views here.
 def home(request):
     categories = ProjectCategory.objects.all()
-    print(categories)
     projects = Project.objects.all()
-    print(projects)
+    paginator = Paginator(projects, 9)
+    page_number = request.GET.get('page')
+    page_obj = Paginator.get_page(paginator, page_number)
+    blogs = BlogModel.objects.all()
     context = {
         'categories': categories,
         'projects': projects,
+        'page_obj': page_obj,
+        'blogs': blogs,    
     }
     return render(request, 'website/home.html', context)
+
+
 
 def contact(request):
     
@@ -58,6 +67,10 @@ def contact(request):
     else:
         return render(request, 'website/home.html', {})
     
+    
+def blog_content(request, pk):
+    content = BlogModel.objects.get(id=pk)
+    return render(request, 'blog_content.html', {'content': content})
 
 def components(request):
 	return render(request, 'website/components.html', {})
@@ -65,3 +78,7 @@ def components(request):
 def projects(request):
 	return render(request, 'website/projects.html', {})
 
+    
+    
+    
+    

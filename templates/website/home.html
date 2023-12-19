@@ -5,15 +5,15 @@
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with JohnDoe landing page.">
+    <meta name="description" content="This is Joseph Agwuh Portfolio page.">
     <meta name="author" content="Devcrud">
     <title>Joseph Landing page | Free Bootstrap 4.3.x landing page</title>
     <!-- font icons -->
     <link rel="stylesheet" href="{% static 'website/vendors/themify-icons/css/themify-icons.css' %}">
     <!-- favicon -->
     <link rel="icon" href="{% static 'website/imgs/favicon.ico' %}">
-    <!-- Bootstrap + JohnDoe main styles -->
-	<link rel="stylesheet" href="{% static 'website/css/johndoe.css' %}">
+    <!-- Bootstrap +casyvina main styles -->
+	<link rel="stylesheet" href="{% static 'website/css/casyvina.css' %}">
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     <a href="{% url 'components' %}" class="btn btn-success btn-component" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a>
@@ -537,7 +537,7 @@
             <h1 class="mb-5"><span class="text-danger">My</span> Portfolio</h1>
             <div class="portfolio">
                 <div class="filters">
-                    <a href="#" data-filter=".New"class="active">
+                    <a href="#" data-filter=".new"class="active">
                         New
                     </a>
 
@@ -546,216 +546,66 @@
                         {{category.name}}
                     </a>
                     {% endfor %}
-                    <!-- <a href="#" data-filter=".advertising">
-                        Advertising
-                    </a>
-                    <a href="#" data-filter=".branding">
-                        Branding
-                    </a>
-                    <a href="#" data-filter=".web">
-                        Web
-                    </a>
-                    <a href="#" data-filter=".port">
-                        Port
-                    </a> -->
+
                 </div>
-
-                <!-- {% for project in projects %}
-                <div class="portfolio-container"> 
-                    <div class="col-md-6 col-lg-4 {{project.catergory}} new">
-                        <div class="portfolio-item">
-                            <img src="{{project.image}}" class="img-fluid" alt="">
-                            <div class="content-holder">
-                                <a class="img-popup" href="{{project.image}}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">{{project.title}}</h6>
-                                    <p class="subtitle">{{project.description}}</p>
-                                </div>
-                            </div>   
-                        </div>             
-                    </div>            
-                {% endfor %} -->
-
-                {% for project in projects %}
+                
                 <div class="portfolio-container">
-                    <div class="col-md-6 col-lg-4 {{ project.category.id }}">
-                    <div class="portfolio-item">
-                        <img src="{{ project.image.url }}" class="img-fluid" alt="">
-                        <div class="content-holder">
-                        <a class="img-popup" href="{{ project.image.url }}"></a>
-                        <div class="text-holder">
-                            <a href="{{project.url}}" style="margin-top: 40px ;"><h6 class="ti-link icon-md title">{{ project.title }}</h6></a>
-                            <p class="subtitle">{{ project.description }}</p>
-                        </div>
+                {% for project in page_obj %}
+                    <div class="col-md-6 col-lg-4 {{ project.category.id }} new">
+                        <div class="portfolio-item">
+                            <img src="{{ project.image.url }}" class="img-fluid" alt="">
+                            <div class="content-holder">
+                            <a class="img-popup" href="{{ project.image.url }}"></a>
+                                <div class="text-holder">
+                                    <a href="{{project.url}}" style="margin-top: 40px ;"><h6 class="ti-link icon-md title">{{ project.title }}</h6></a>
+                                    <p class="subtitle">{{ project.description }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </div>
+
+                {% endfor %}           
                 </div>
-                {% endfor %}
-                    <!-- <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/web-2.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/web-2.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">WEB</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div> 
-                        </div>                         
+                <div class="">
+                    <div class="pagination-detail">
+                        Showing page {{page_obj.number}} of {{ page_obj.paginator.num_pages}}
                     </div>
-                    <div class="col-md-6 col-lg-4 advertising new">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/advertising-2.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                         
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/advertising-2.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">ADVERSTISING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>    
-                        </div>              
-                    </div> 
-                    <div class="col-md-6 col-lg-4 web">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/web-4.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/web-4.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">WEB</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div>
+    
+                    <ul class="pagination">
+    
+                        {% if page_obj.has_previous %}                     
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="ti-angle-double-left"></i>Previous</a></li>
+                        {% endif %}
+    
+                        {% for p in paginator.page_range %}
+                        <li class="page-item"><a href="?page={{ p }}{% if p == page_obj.number %} class="active"{% endif %}"></a>{{ p }}</li>
+                        {% endfor %}
+    
+                        {% if page_obj.has_next %}
+                        <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="ti-angle-double-right"></i>Next</a></li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </div>
 
-                    <div class="col-md-6 col-lg-4 advertising"> 
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/advertising-1.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                               
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/advertising-1.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">ADVERSITING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                       
-                    </div> 
-                    <div class="col-md-6 col-lg-4 web new">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/web-3.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">  
-                           <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/web-3.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">WEB</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div>
-                    <div class="col-md-6 col-lg-4 advertising new">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/advertising-3.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">       
-                           <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/advertising-3.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">ADVERSITING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                       
-                    </div> 
-                    <div class="col-md-6 col-lg-4 advertising new"> 
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/advertising-4.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">            
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/advertising-4.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">ADVERTISING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>
-                                
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding new">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/branding-1.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                        
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/branding-1.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div> 
-                        </div>
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/branding-2.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">  
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/branding-2.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding new">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/branding-3.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">   
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/branding-3.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                    
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/branding-4.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                      
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/branding-4.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
-                                </div>
-                            </div>
-                        </div>                                                      
-                    </div> 
-                    <div class="col-md-6 col-lg-4 branding">
-                        <div class="portfolio-item">
-                            <img src="{% static 'website/imgs/branding-5.jpg' %}" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">          
-                            <div class="content-holder">
-                                <a class="img-popup" href="{% static 'website/imgs/branding-5.jpg' %}"></a>
-                                <div class="text-holder">
-                                    <h6 class="title">BRANDING</h6>
-                                    <p class="subtitle">. Data acquisition and wrangling: Collecting and gathering data from various sources, such as databases, sensors, social media, and web scraping. Cleaning, transforming, and structuring the data into a format suitable for analysis.</p>
-                                </div>
-                            </div>
-                        </div>                                                   
-                    </div> -->
-
-
-                </div> 
-            </div>  
         </div>            
     </section>
     <!-- End of portfolio section -->
 
     <section class="section" id="blog">
         <div class="container">
-            <h2 class="mb-5">Latest <span class="text-danger">News</span></h2>
+            <h2 class="mb-5">Latest <span class="text-danger">Blog</span></h2>
             <div class="row">
+                
+                {% for blog in blogs %}
+
                 <div class="blog-card">
                     <div class="img-holder">
-                        <img src="{% static 'website/imgs/blog1.jpg' %}" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                        <img src="{{ blog.image.url }}" alt="...">
                     </div>
                     <div class="content-holder">
-                        <h6 class="title">Consectetur adipisicing elit</h6>
+                        <h6 class="title">{{ blog.title }}</h6>
 
                         <p class="post-details">
                             <a href="#">By: Admin</a>
@@ -763,53 +613,13 @@
                             <a href="#"><i class="ti-comment"></i> 123</a>
                         </p>
                         
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nesciunt qui sit velit delectus voluptates, repellat ipsum culpa id deleniti. Rerum debitis facilis accusantium neque numquam mollitia modi quasi distinctio.</p>
+                        <p>{{ blog.content|safe|truncatechars:200 }}</p>
 
-                        <p><b>Necessitatibus nihil impedit! Ex nisi eveniet, dolor aliquid consequuntur repudiandae.</b></p>
-                        <p>Magnam in repellat enim harum omnis aperiam! Explicabo illo, commodi, dolor blanditiis cupiditate harum nisi vero accusamus laudantium voluptatibus dolores quae obcaecati.</p>
-
-                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
+                        <a href="{% url 'content' blog.pk %}" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
                     </div>
                 </div><!-- end of blog wrapper -->
 
-                <!-- blog-card -->
-                <div class="blog-card">
-                    <div class="img-holder">
-                        <img src="{% static 'website/imgs/blog2.jpg' %}" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                    </div>
-                    <div class="content-holder">
-                        <h6 class="title">Explicabo illo</h6>
-
-                        <p class="post-details">
-                            <a href="#">By: Admin</a>
-                            <a href="#"><i class="ti-heart text-danger"></i> 456</a>
-                            <a href="#"><i class="ti-comment"></i> 264</a>
-                        </p>
-                        
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
-
-                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
-                    </div>
-                </div><!-- end of blog wrapper -->
-                <!-- blog-card -->
-                <div class="blog-card">
-                    <div class="img-holder">
-                        <img src="{% static 'website/imgs/blog3.jpg' %}" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
-                    </div>
-                    <div class="content-holder">
-                        <h4 class="title">Porro Quisqua</h4>
-
-                        <p class="post-details">
-                            <a href="#">By: Admin</a>
-                            <a href="#"><i class="ti-heart text-danger"></i> 431</a>
-                            <a href="#"><i class="ti-comment"></i> 312</a>
-                        </p>
-                        
-                        <p> consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
-
-                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
-                    </div>
-                </div><!-- end of blog wrapper -->
+                {% endfor %}
 
             </div>
         </div>
@@ -931,12 +741,9 @@
 
     <!-- Isotope  -->
     <script src="{% static 'website/vendors/isotope/isotope.pkgd.js' %}"></script>
-    
-    <!-- Google mpas -->
-    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script> -->
 
-    <!-- JohnDoe js -->
-    <script src="{% static 'website/js/johndoe.js' %}"></script>
+    <!-- Casyvina js -->
+    <script src="{% static 'website/js/casyvina.js' %}"></script>
 
 </body>
 </html>
